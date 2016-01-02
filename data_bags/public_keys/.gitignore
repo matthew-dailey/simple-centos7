@@ -1,0 +1,5 @@
+# no reason to commit public keys here, and we'll try to avoid letting people
+# add their private keys too
+id_*
+*.pub
+*.json
