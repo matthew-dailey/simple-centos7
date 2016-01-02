@@ -4,5 +4,6 @@
   "uid":2000,
   "gid":0,
   "home":"/home/developer",
-  "shell":"/bin/bash"
+  "shell":"/bin/bash",
+  "password_shadow_hash":"$1$6yMJczDZ$4NvTH0wylQ9vsJoiSdLmd."
 }
