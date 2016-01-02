@@ -21,3 +21,8 @@ users.each do |user_data|
     password user_data['password_shadow_hash']
   end
 end
+
+sudoer_names = users.select {|user| user['sudoer'] == true }.collect {|user| user['id']}
+group 'wheel' do
+  members sudoer_names
+end
