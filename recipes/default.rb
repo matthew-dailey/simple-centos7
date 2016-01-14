@@ -6,14 +6,15 @@
 
 # grab user information from the data bag
 user_bag = 'users'
-users = search(user_bag, "*:*")
-if users.empty? then
+users = data_bag(user_bag)
+if users.empty?
   Chef::Application::fatal!("Could not find any users in data_dag #{user_bag}", 1)
 end
 
 sudoer_names = []
-users.each do |user_data|
-  username = user_data['id']
+users.each do |username|
+  # create the user
+  user_data = data_bag_item(user_bag, username)
   user username do
     comment user_data['comment']
     uid user_data['uid']
