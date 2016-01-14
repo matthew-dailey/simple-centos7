@@ -53,3 +53,8 @@ $1$4iFZ5+AT$LBDbnn0fs2B6ZpwW0o9gj1
 ```
 
 And place `$1$4iFZ5+AT$LBDbnn0fs2B6ZpwW0o9gj1` as the value for the `password_shadow_hash` key in `developer.json`. 
+
+# TODOs
+
+* Remove `PermitRootLogin` from sshd config
+* Configure `firewalld`
