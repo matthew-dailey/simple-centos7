@@ -11,6 +11,15 @@ if users.empty?
   Chef::Application::fatal!("Could not find any users in data_dag #{user_bag}", 1)
 end
 
+# check that all public keys are in order as well
+public_keys_bag = 'public_keys'
+public_keys = data_bag(public_keys_bag)
+
+missing_public_keys = users.select {|username| !public_keys.include?(username) }
+if !missing_public_keys.empty?
+  Chef::Application::fatal!("Missing public keys for these users: #{missing_public_keys}", 2)
+end
+
 sudoer_names = []
 users.each do |username|
   # create the user
@@ -31,12 +40,12 @@ users.each do |username|
   end
 
   # copy in public keys from public_key data_bag
-  user_key = data_bag_item('public_keys', username)
-  public_keys = user_key['public_keys'].join('\n')
+  user_key = data_bag_item(public_keys_bag, username)
+  user_public_keys = user_key['public_keys'].join('\n')
   file "/home/#{username}/.ssh/authorized_keys" do
     owner username
     mode '644'
-    content public_keys
+    content user_public_keys
   end
 
   if user_data['sudoer'] then
