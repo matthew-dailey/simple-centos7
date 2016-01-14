@@ -44,7 +44,7 @@ users.each do |username|
   user_public_keys = user_key['public_keys'].join('\n')
   file "/home/#{username}/.ssh/authorized_keys" do
     owner username
-    mode '644'
+    mode '600'
     content user_public_keys
   end
 
