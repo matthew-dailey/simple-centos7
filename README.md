@@ -11,7 +11,23 @@ This project requires the [chef-dk](https://downloads.chef.io/chef-dk/) to test 
 
 # Testing
 
-Out of the box, this repository can be tested via `kitchen converge`.
+To easily get started, add one or more public keys into the `public_keys` data bag.  Running the following creates `data_bags/public_keys/developer.json` for you
+```
+ruby copy-public-keys.rb ~/.ssh/id_rsa.pub
+```
+
+Next, `kitchen converge` will create a VM and configure it.  When the VM is provisioned, you
+should be able to ssh as `developer` to the machine using the static IP listed in the
+`private_network` section of [.kitchen.yml](.kitchen.yml)
+
+```
+# this may cause a prompt for the password to your private key
+# associated with the public key you added to the data_bag
+
+$ ssh developer@192.168.33.35
+```
+
+TODO: disable logging in as root
 
 # Creating own username and password
 
