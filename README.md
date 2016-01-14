@@ -27,8 +27,6 @@ should be able to ssh as `developer` to the machine using the static IP listed i
 $ ssh developer@192.168.33.35
 ```
 
-TODO: disable logging in as root
-
 # Creating own username and password
 
 Default values are placed in [developer.json](data_bags/users/developer.json) for a username and password.  These
